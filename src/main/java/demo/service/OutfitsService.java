@@ -1,7 +1,7 @@
 package demo.service;
 
 import demo.repository.OutfitsRepository;
-import demo.entity.Outfits;
+import demo.models.entity.Outfits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ public class OutfitsService {
     private OutfitsRepository outfitsRepository;
 
     public List<Outfits> NameAndFacultyOutfits() {
-        return outfitsRepository.getNameAndFaculty();
+        return outfitsRepository.getAll();
     }
-    public List<Outfits> AllByFacultyNotNullAndNameNotNull() {
-        return outfitsRepository.getAllByFacultyNotNullAndNameNotNull();
-    }
+   /* public List<Outfits> AllByFacultyNotNullAndNameNotNull() {
+        return outfitsRepository.getAllByFacultyNotNullAndNameNotNull();*/
 }
+

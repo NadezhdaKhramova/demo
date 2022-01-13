@@ -16,7 +16,7 @@ public class OutfitsController {
     private OutfitsService outfitsService;
 
     @GetMapping("/outfits")
-    public ResponseEntity AllByFacultyNotNullAndNameNotNull() {
-        return ResponseEntity.status(HttpStatus.OK).body(outfitsService.AllByFacultyNotNullAndNameNotNull());
+    public ResponseEntity NameAndFacultyOutfits() {
+        return ResponseEntity.status(HttpStatus.OK).body(outfitsService.NameAndFacultyOutfits());
     }
 }

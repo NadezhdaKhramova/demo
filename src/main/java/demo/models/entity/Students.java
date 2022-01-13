@@ -1,9 +1,8 @@
-package demo.entity;
+package demo.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,8 +13,8 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Students")
-@Entity
+@Table(name = "Students", schema ="db_test")
+@Entity( name="students")
 @EqualsAndHashCode(exclude = "outfits")
 @ToString(exclude = "outfits")
 public class Students {

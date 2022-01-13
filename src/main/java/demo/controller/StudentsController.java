@@ -15,7 +15,7 @@ public class StudentsController {
 
     @GetMapping("/students")
     public ResponseEntity getStudent() {
-        return ResponseEntity.status(HttpStatus.OK).body(studentsService.getStudents("Матвеева Анна"));
+        return ResponseEntity.status(HttpStatus.OK).body(studentsService.getStudents());
     }
 
 

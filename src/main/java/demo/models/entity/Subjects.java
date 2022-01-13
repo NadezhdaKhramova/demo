@@ -1,4 +1,4 @@
-package demo.entity;
+package demo.models.entity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import static javax.persistence.CascadeType.ALL;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table ( name = "Subjects")
+@Table ( name = "Subjects", schema ="db_test")
 public class Subjects {
 
    @Id

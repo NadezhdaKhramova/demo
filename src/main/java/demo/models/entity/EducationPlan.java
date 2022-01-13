@@ -1,4 +1,4 @@
-package demo.entity;
+package demo.models.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name ="Educationplan")
+@Entity(name="educationPlan")
+@Table(name ="Educationplan", schema ="db_test")
 @Getter
 @Setter
 @NoArgsConstructor

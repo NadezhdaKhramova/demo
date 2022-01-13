@@ -1,4 +1,4 @@
-package demo.entity;
+package demo.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,10 +7,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+@Entity (name ="outfits")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="Outfits")
+@Table(name ="Outfits", schema ="db_test")
 @Getter
 @Setter
 public class Outfits {

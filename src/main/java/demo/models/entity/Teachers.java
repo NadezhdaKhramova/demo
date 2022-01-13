@@ -1,19 +1,16 @@
-package demo.entity;
+package demo.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
 
-@Entity
-@Table(name ="Teachers")
+@Entity(name="teachers")
+@Table(name ="Teachers", schema ="db_test")
 @Getter
 @Setter
 @AllArgsConstructor

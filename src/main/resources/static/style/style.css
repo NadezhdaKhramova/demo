@@ -1,0 +1,41 @@
+.base{
+    color: brown;
+    font-size: 20px;
+    text-shadow: brown;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    font-weight: bold;
+}
+.main{
+    color: rgb(119, 57, 57);
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    font-weight: bold;
+    align-content: center;
+
+}
+.except{
+    color: brown;
+    font-size: 10px;
+    text-shadow: brown;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    font-weight: bold;
+}
+.base_mini{
+    color: brown;
+    font-size: 15px;
+    text-shadow: brown;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    font-weight: bold;
+}
+#footer{
+    position: fixed;
+    margin-top: 50px;
+    height: 10%;
+    color: white;
+    text-align:center;
+    background-color: grey;
+}
