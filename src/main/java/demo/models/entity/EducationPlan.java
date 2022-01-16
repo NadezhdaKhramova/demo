@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity(name="educationPlan")
-@Table(name ="Educationplan", schema ="db_test")
+@Table(name ="educationPlan", schema ="db_test")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class EducationPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name ="outfitid")

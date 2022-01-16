@@ -5,6 +5,14 @@
     <title>admin</title>
 </head>
 <body>
+<h2>${entity}</h2>
+<form action="#" th:action="@{/edit}" th:object="${edit}">
+<form: form action="${edit}" method="POST" modelAttribute="entity">
+    <label for="name">NAME</label>
+    <input type="text" name="name" id="name">
+    <input type="submit" value="Edit">
+    <input type="hidden" name="id" value="${id}">
 
+</form: form>
 </body>
 </html>

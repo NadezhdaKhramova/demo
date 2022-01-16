@@ -20,4 +20,5 @@ public class TeachersController {
     public ResponseEntity getTeachers() {
         return  ResponseEntity.status(HttpStatus.OK).body(teachersService.getTeachers());
     }
+
 }

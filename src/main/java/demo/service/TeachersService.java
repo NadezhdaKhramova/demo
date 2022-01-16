@@ -16,4 +16,8 @@ public class TeachersService {
     public List<Teachers> getTeachers() {
         return  teachersRepository.getAll();
     }
+
+    public void editTeacher(String fio, String name, Long id) {
+        teachersRepository.edit(fio, name, id);
+    }
 }

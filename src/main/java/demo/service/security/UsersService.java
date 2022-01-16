@@ -15,7 +15,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.security.GeneralSecurityException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
+
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +40,7 @@ public class UsersService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Users users = usersRepository.findByLogin(login);
+        Optional<Users> userLogin = usersRepository.findByLogin(login);
         if(users == null) {
             throw new UsernameNotFoundException(String.format(MSG_USER_NOT_FOUND,login));
         }
@@ -47,4 +53,14 @@ public class UsersService implements UserDetailsService {
                 .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toList());
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void register(final Users newUser) throws GeneralSecurityException {
+        // Сохраняем нового пользователя
+        if (usersRepository.findByLogin(newUser.getLogin()).isPresent()) {
+            throw new RuntimeException(String.format("Пользователь с логином  %s уже существует", newUser.getLogin()));
+        } else {
+            usersRepository.save(newUser);
+            log.info("Пользователь с логином : {} успешно зарегистрирован", newUser.getLogin());
+        }
 }

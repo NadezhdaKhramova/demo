@@ -15,7 +15,6 @@ public class OutfitsService {
     public List<Outfits> NameAndFacultyOutfits() {
         return outfitsRepository.getAll();
     }
-   /* public List<Outfits> AllByFacultyNotNullAndNameNotNull() {
-        return outfitsRepository.getAllByFacultyNotNullAndNameNotNull();*/
+
 }
 

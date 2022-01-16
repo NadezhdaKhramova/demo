@@ -13,7 +13,7 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Students", schema ="db_test")
+@Table(name = "students", schema ="db_test")
 @Entity( name="students")
 @EqualsAndHashCode(exclude = "outfits")
 @ToString(exclude = "outfits")

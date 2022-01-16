@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,9 @@ import java.util.Optional;
 @Repository
 public interface StudentsRepository extends JpaRepository<Students,Long> {
 
-    Students findByFio( String fio);
+    Students findByFio(String fio);
+
+    Students findById(String id);
 
     @Query(nativeQuery = true, value = "Select * from Students ")
     List<Students> getTest();
@@ -40,11 +41,22 @@ public interface StudentsRepository extends JpaRepository<Students,Long> {
     Optional<Students> findStudentsByOutfitsName(@Param("outfit_name") final String outfitName);
 
     @Modifying
-    @Query(nativeQuery = true, value = "insert into stu Students join fetch stu.outfits " +
-            "(fio, dateOfAdmission, passport, (select out.id from Outfits out where  out.name = :outfit_name)) " +
-            "select :fio, :dateOfAdmission, :passport, :numberOutfit  from Students")
+    @Query(value = "insert into students stu"+ //join fetch stu.outfits out " +
+            "(fio, dateOfAdmission, passport, (select out.id from outfits out where  out.name = :outfit_name)) " +
+            "select :fio, :dateOfAdmission, :passport, :numberOutfit  from students")
     void insertStudentInOutfit(@Param("fio") String fio, @Param("dateOfAdmission") Date dateOfAdmission,
                                @Param("passport") String passport, @Param("outfit_name") String outfit_name);
+
+    @Modifying
+    @Query("update students stu set " +
+            "stu.fio = :fio ,stu.dateOfAdmission = :dateOfAdmission," +
+            "stu.passport = :passport, stu.outfits.name =:name  where stu.id = :id")
+    void edit(@Param("fio") String fio, @Param("dateOfAdmission") Date dateOfAdmission,
+                     @Param("passport") String passport, @Param("name") String name, @Param("id") Long id);
+
+    @Modifying
+    @Query(nativeQuery = true, value = "insert into students (fio, dateOfAdmission, passport, outfitid)"+
+            " values ( ?1, ?2, ?3, (select id from outfits where outfits.name =?4) " )
+    void insertStudentInOutfitDop(String fio,  Date dateOfAdmission, String passport, String outfit_name);
+
 }
-
-

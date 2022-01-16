@@ -9,9 +9,11 @@ import java.util.List;
 
 @Repository
 public interface OutfitsRepository extends JpaRepository<Outfits,Long> {
+
     List<Outfits> getAllByName(String name);
 
     @Query("select out from outfits out join fetch  out.teachers")
     List<Outfits> getAll();
 
+  //  @Query("select  ")
 }
