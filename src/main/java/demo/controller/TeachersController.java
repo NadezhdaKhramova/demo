@@ -21,4 +21,13 @@ public class TeachersController {
         return  ResponseEntity.status(HttpStatus.OK).body(teachersService.getTeachers());
     }
 
+    @GetMapping("/teachers/fio")
+    public ResponseEntity curatorOutfits(String fio) {
+        return ResponseEntity.status(HttpStatus.OK).body(fio);
+    }
+
+    @GetMapping("/teachers/name")
+    public ResponseEntity curatorTeacherOut (String name) {
+        return ResponseEntity.status(HttpStatus.OK).body(name);
+    }
 }

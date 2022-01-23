@@ -10,7 +10,7 @@ import java.util.Set;
 import static javax.persistence.CascadeType.*;
 
 @Entity(name="teachers")
-@Table(name ="Teachers", schema ="db_test")
+@Table(name ="teachers", schema ="db_test")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,7 +21,7 @@ public class Teachers {
     @Column(name="id",nullable = false)
     private Long id;
 
-    @JsonProperty(value = "ФИО преподавалеля")
+    @JsonProperty(value = "ФИО преподавателя")
     @Column(name="fio",nullable = false)
     private String fio;
 

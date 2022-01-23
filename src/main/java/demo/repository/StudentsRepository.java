@@ -13,17 +13,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface StudentsRepository extends JpaRepository<Students,Long> {
+public interface StudentsRepository extends JpaRepository<Students, Long> {
 
     Students findByFio(String fio);
 
-    Students findById(String id);
+    Students getById(Long id);
+
+    Students findByDateOfAdmission(Date date);
 
     @Query(nativeQuery = true, value = "Select * from Students ")
     List<Students> getTest();
 
     @Query("select stu from students  stu join fetch stu.outfits where stu.fio = :student_fio")
-    Optional<Students> getAll(@Param("student_fio") final String fio);
+    Students getStudentsByFio(@Param("student_fio") final String fio);
 
  /*   @Query(nativeQuery = true, value = "select outfits.name, students.fio, students.dateofadmission from students inner join outfits on students.outfitid = outfits.id where outfits.name = :name; ")
     List<Students>  fetchStudentsFioDateOfAdmission(@Param("name")String name);
@@ -36,16 +38,16 @@ public interface StudentsRepository extends JpaRepository<Students,Long> {
 
     Optional<Students> findById(final long studentId);
 
-    @Query("select stu from students  stu join fetch stu.outfits " +
+    @Query("select stu from students  stu inner join  fetch stu.outfits " +
             "join stu.outfits ou where ou.name = :outfit_name")
-    Optional<Students> findStudentsByOutfitsName(@Param("outfit_name") final String outfitName);
+    List<Students> findStudentsByOutfitsName(@Param("outfit_name") final String outfitName);
 
-    @Modifying
-    @Query(value = "insert into students stu"+ //join fetch stu.outfits out " +
+   /* @Modifying
+    @Query(value = "insert into Students stu"+ //join fetch stu.outfits out " +
             "(fio, dateOfAdmission, passport, (select out.id from outfits out where  out.name = :outfit_name)) " +
             "select :fio, :dateOfAdmission, :passport, :numberOutfit  from students")
     void insertStudentInOutfit(@Param("fio") String fio, @Param("dateOfAdmission") Date dateOfAdmission,
-                               @Param("passport") String passport, @Param("outfit_name") String outfit_name);
+                               @Param("passport") String passport, @Param("outfit_name") String outfit_name);*/
 
     @Modifying
     @Query("update students stu set " +

@@ -18,11 +18,11 @@ public class EducationPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+  /*  @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name ="outfitid")
     private Outfits outfits;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name ="subjectid")
-    private Subjects subjects;
+    private Subjects subjects;*/
 }

@@ -12,8 +12,8 @@ public interface EducationPlanRepository extends JpaRepository<EducationPlan,Lon
 
     EducationPlan getById (Long id);
 
-    @Query("select out.name, sub.name from  educationPlan  ep join fetch ep.outfits  out " +
+    /*@Query("select out.name, sub.name from  educationPlan  ep join fetch ep.outfits  out " +
             "join fetch ep.subjects sub" )
-    List<EducationPlan> outfitsSubjects();
+    List<EducationPlan> outfitsSubjects();*/
 
 }

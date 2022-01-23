@@ -15,5 +15,6 @@ public interface OutfitsRepository extends JpaRepository<Outfits,Long> {
     @Query("select out from outfits out join fetch  out.teachers")
     List<Outfits> getAll();
 
-  //  @Query("select  ")
+ //   @Query("select  ")
+
 }

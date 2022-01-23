@@ -26,9 +26,9 @@ public class Outfits {
     @Column(name="faculty",nullable = false)
     private String faculty;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "outfits",cascade = CascadeType.ALL)
-    private Set <EducationPlan> educationplan;
+    private Set <EducationPlan> educationplan;*/
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "outfits", cascade = CascadeType. ALL)
@@ -38,4 +38,12 @@ public class Outfits {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curatorid", nullable = false)
     private Teachers teachers;
+
+   @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "outfifs_subjects",
+            joinColumns = @JoinColumn(name = "outfit_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
+    private Set<Subjects> subjects;
 }

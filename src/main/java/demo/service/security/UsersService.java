@@ -31,7 +31,7 @@ public class UsersService implements UserDetailsService {
 
     private UserRepository usersRepository;
     private Set<Role> roles;
-    Collection authorities = new ArrayList();
+    Collection authorities = new ArrayList<>();
 
     private static final String MSG_USER_NOT_FOUND = "Пользователь с логином %s не найден в системе";
 
@@ -39,14 +39,11 @@ public class UsersService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Users users = usersRepository.findByLogin(login);
-        Optional<Users> userLogin = usersRepository.findByLogin(login);
-        if(users == null) {
-            throw new UsernameNotFoundException(String.format(MSG_USER_NOT_FOUND,login));
+       // Users users = usersRepository.findByLogin(login);
+        final Users userEntity = usersRepository.findByLogin(login)
+                .orElseThrow(()-> new UsernameNotFoundException(String.format(MSG_USER_NOT_FOUND, login))); //TODO: Создать исключение?
+        return new User(userEntity.getLogin(), userEntity.getPassword(), listAuthority(userEntity.getRoles()));
         }
-       // List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(roles.getRoles()));
-        return new User(users.getLogin(), users.getPassword(),listAuthority(users.getRoles()));
-    }
 
     private Collection<? extends GrantedAuthority> listAuthority(Collection<Role> roles) {
         return roles.stream()
@@ -63,4 +60,8 @@ public class UsersService implements UserDetailsService {
             usersRepository.save(newUser);
             log.info("Пользователь с логином : {} успешно зарегистрирован", newUser.getLogin());
         }
+    }
+    public void delete(String username) {
+        usersRepository.deleteByLogin(username);
+    }
 }
