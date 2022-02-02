@@ -1,5 +1,6 @@
 package demo.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -19,25 +20,26 @@ import static javax.persistence.FetchType.LAZY;
 @ToString(exclude = "outfits")
 public class Students {
 
-    @JsonProperty(value = "Номер")
+    @JsonProperty("Номер")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonProperty(value = "ФИО")
+    @JsonProperty("ФИО")
     @Column(name="fio")
     private String  fio;
 
-    @JsonProperty(value = "Дата зачисления")
+    @JsonProperty("Дата зачисления")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
     @Column(name="dateOfAdmission")
     private Date dateOfAdmission;
 
-    @JsonProperty(value = "Серия и номер паспорта")
-    @Column(name="passport",nullable = false)
+    @JsonProperty("Серия и номер паспорта")
+    @Column(name="passport", nullable = true)
     private String passport;
 
     @JsonIgnore
-    @ManyToOne (fetch = LAZY)
+    @ManyToOne (fetch = LAZY )
     @JoinColumn (name ="outfitid")
     private Outfits outfits;
 }

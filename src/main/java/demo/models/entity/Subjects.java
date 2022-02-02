@@ -1,5 +1,6 @@
 package demo.models.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,16 +14,21 @@ import static javax.persistence.CascadeType.ALL;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"outfits", "teachers"})
+@ToString(exclude = {"outfits", "teachers"})
 @Table ( name = "subjects", schema ="db_test")
 public class Subjects {
 
+   @JsonProperty("порядковый номер")
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
+   @JsonProperty("код предмета")
    @Column(nullable = false)
    private Integer code;
 
+   @JsonProperty("название предмета")
    @Column(nullable = false)
    private String name;
 

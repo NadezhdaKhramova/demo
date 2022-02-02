@@ -38,11 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();*/
                 .antMatchers("/admin/**").hasRole( "ADMIN")
-                //.antMatchers("/teachers/**").hasRole( "ADMIN")
+             //   .antMatchers("/teachers/**").hasAnyRole( "USER", "ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/**").permitAll()
                 .and().formLogin();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);

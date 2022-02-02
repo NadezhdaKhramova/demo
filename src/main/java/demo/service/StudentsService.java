@@ -5,6 +5,7 @@ import demo.repository.StudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,14 +31,20 @@ public class StudentsService {
         return studentsRepository.getStudentsByFio(fio);
     }
 
-  /* public void studentEdit(StudentEdit edit) {
-        studentsRepository.edit(fio, dateOfAdmission, passport, name, id);
-    }*/
+    public Students createStudent(Students student) {
+       return  studentsRepository.save(student);
+    }
 
-    /*  public void createStudent(String fio,  Date dateOfAdmission, String passport, String outfit_name) {
-          studentsRepository.insertStudentInOutfit( fio, dateOfAdmission,  passport,  outfit_name);
-      }*/
+    public int  editStudent(Long id, String fio, Date dateOfAdmission, String passport, String name) {
+         return studentsRepository.edit(id, fio, dateOfAdmission, passport, name);
+      }
+
     public List<Students> studentsInOutfit(String outfitName) {
         return studentsRepository.findStudentsByOutfitsName(outfitName);
     }
+
+    public int insertStudent(String fio,  Date dateOfAdmission, String passport, String outfit_name) {
+        return studentsRepository.insertStudentInOutfitDop(fio, dateOfAdmission, passport, outfit_name);
+    }
+
 }

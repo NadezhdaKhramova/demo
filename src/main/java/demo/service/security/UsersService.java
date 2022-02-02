@@ -5,6 +5,7 @@ import demo.models.entity.securty.Users;
 import demo.repository.security.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UsersService implements UserDetailsService {
 
+    @Autowired
     private UserRepository usersRepository;
     private Set<Role> roles;
     Collection authorities = new ArrayList<>();

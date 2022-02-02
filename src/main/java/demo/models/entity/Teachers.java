@@ -15,14 +15,17 @@ import static javax.persistence.CascadeType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"outfits", "subjects"})
+@ToString(exclude = {"outfits", "subjects"})
 public class Teachers {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id",nullable = false)
     private Long id;
 
-    @JsonProperty(value = "ФИО преподавателя")
-    @Column(name="fio",nullable = false)
+    @JsonProperty("ФИО преподавателя")
+    @Column(name="fio" ,nullable = false)
     private String fio;
 
     @JsonIgnore

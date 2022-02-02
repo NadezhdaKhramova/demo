@@ -1,13 +1,12 @@
 package demo.service;
 
+import demo.models.entity.Students;
 import demo.models.entity.Teachers;
 import demo.repository.TeachersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 @Service
 public class TeachersService {
@@ -29,5 +28,9 @@ public class TeachersService {
 
     public void editTeacher(String fio, String name, Long id) {
         teachersRepository.edit(fio, name, id);
+    }
+
+    public void createTeacher(Teachers teacher) {
+        teachersRepository.save(teacher);
     }
 }
